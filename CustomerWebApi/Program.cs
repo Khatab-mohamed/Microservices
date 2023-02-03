@@ -1,5 +1,3 @@
-
-
 using CustomerWebApi.Data;
 using CustomerWebApi.Services;
 using Microsoft.EntityFrameworkCore;
@@ -12,8 +10,11 @@ builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddControllers();
 
 /* Database Context Dependency Injection */
+var serverName = Environment.GetEnvironmentVariable("DB_HOST");
+var dataBaseName = Environment.GetEnvironmentVariable("DB_NAME");
+var userPassword = Environment.GetEnvironmentVariable("DB_SA_PASSWORD");
 
-var connectionString = "Server=Localhost;Database=CustomerDb;Trusted_Connection=True";
+var connectionString = $"Data Source={serverName};Initial Catalog={dataBaseName};User ID=sa;Password={userPassword}";
 builder.Services.AddDbContext<CustomerDbContext>(opt => opt.UseSqlServer(connectionString));
 /* ===================================== */
 

@@ -14,9 +14,9 @@ builder.Services.AddControllers();
 
 
 /* Database Context Dependency Injection */
-var serverName = "localhost";
-string dbName = "dms_product";
-string dbPassword = "P@ssw0rd";
+var serverName = Environment.GetEnvironmentVariable("DB_HOST");
+var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+var dbPassword = Environment.GetEnvironmentVariable("DB_ROOT_PASSWORD");
 
 var connectionString = $"Server={serverName};port=3306;database={dbName};user=root;password={dbPassword}";
 
